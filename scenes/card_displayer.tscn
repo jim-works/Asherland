@@ -1,0 +1,55 @@
+[gd_scene load_steps=5 format=3 uid="uid://dqs42b67hfkim"]
+
+[ext_resource type="Texture2D" uid="uid://cfrhkgqamrn71" path="res://sprites/card.png" id="1_gbrel"]
+[ext_resource type="Script" path="res://src/cards/CardDisplayer.cs" id="2_oke1b"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_64g51"]
+font_size = 64
+shadow_size = 8
+shadow_color = Color(0, 0, 0, 0.392157)
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ac2it"]
+font_size = 32
+shadow_size = 0
+
+[node name="CardDisplayer" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 5.0
+offset_bottom = 5.0
+scale = Vector2(2, 2)
+script = ExtResource("2_oke1b")
+
+[node name="Background" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = -64.0
+offset_top = -192.0
+offset_bottom = -96.0
+scale = Vector2(2, 2)
+texture_normal = ExtResource("1_gbrel")
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(0, -148)
+scale = Vector2(2, 2)
+
+[node name="TitleLabel" type="Label" parent="."]
+offset_left = -50.0
+offset_top = -112.0
+offset_right = 350.0
+offset_bottom = -14.0
+scale = Vector2(0.25, 0.25)
+label_settings = SubResource("LabelSettings_64g51")
+
+[node name="DescriptionLabel" type="Label" parent="."]
+offset_left = -50.0
+offset_top = -85.0
+offset_right = 350.0
+offset_bottom = 147.0
+scale = Vector2(0.25, 0.25)
+label_settings = SubResource("LabelSettings_ac2it")
+autowrap_mode = 3
+
+[connection signal="pressed" from="Background" to="." method="OnButtonClicked"]

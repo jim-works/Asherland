@@ -1,0 +1,61 @@
+[gd_scene load_steps=9 format=3 uid="uid://bh1c3x6b4y6se"]
+
+[ext_resource type="Script" path="res://src/map/MapGenerator.cs" id="1_10sle"]
+[ext_resource type="PackedScene" uid="uid://dqs42b67hfkim" path="res://scenes/card_displayer.tscn" id="2_bbk4l"]
+[ext_resource type="Script" path="res://src/cards/HandDisplayer.cs" id="2_g6apl"]
+[ext_resource type="Script" path="res://src/map/AerialCamera.cs" id="2_ravou"]
+[ext_resource type="PackedScene" uid="uid://12ewha0no0yb" path="res://scenes/hex_chunk.tscn" id="3_vhfmq"]
+[ext_resource type="Resource" uid="uid://b2kmr07bcuc76" path="res://resources/cards/land_grab.tres" id="4_j783k"]
+
+[sub_resource type="Environment" id="Environment_e04hl"]
+ssao_enabled = true
+ssao_radius = 1.54
+ssao_light_affect = 0.5
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_p6qgi"]
+fractal_type = 2
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.996662, 0.0627204, -0.0522643, -0.0139608, 0.499805, 0.866026, 0.0804393, 0.863864, -0.497261, 0, 15, 0)
+environment = SubResource("Environment_e04hl")
+script = ExtResource("2_ravou")
+RotationSpeed = 1.0
+RotationSmoothness = 20.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.700573, -0.450357, 0.553512, 0, 0.775683, 0.631123, -0.713581, -0.442147, 0.543423, 0, 0, 0)
+shadow_enabled = true
+shadow_opacity = 0.61
+directional_shadow_blend_splits = true
+directional_shadow_max_distance = 500.0
+
+[node name="Map" type="Node3D" parent="."]
+script = ExtResource("1_10sle")
+ChunkScene = ExtResource("3_vhfmq")
+Noise = SubResource("FastNoiseLite_p6qgi")
+Spline = PackedVector2Array(0, -5, 0.25, 0, 0.5, 5, 1, 20)
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HandDisplayer" type="Control" parent="UI"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("2_g6apl")
+CardSpacing = 200.0
+CardDisplayerScene = ExtResource("2_bbk4l")
+SelectedCardYOffset = -400.0
+TestDisplay = Array[Resource]([ExtResource("4_j783k"), ExtResource("4_j783k"), ExtResource("4_j783k"), ExtResource("4_j783k"), ExtResource("4_j783k")])

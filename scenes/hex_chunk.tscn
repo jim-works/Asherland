@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://12ewha0no0yb"]
+
+[ext_resource type="Material" uid="uid://6eg7xtgc8wgm" path="res://materials/terrain.tres" id="1_qvxgd"]
+
+[node name="HexChunk" type="MeshInstance3D"]
+material_override = ExtResource("1_qvxgd")

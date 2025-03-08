@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://b2kmr07bcuc76"]
+
+[ext_resource type="Script" path="res://src/cards/Card.cs" id="1_xdj4c"]
+[ext_resource type="Texture2D" uid="uid://bavoehl7ebdp0" path="res://sprites/Land Grab.png" id="1_yaql6"]
+
+[resource]
+script = ExtResource("1_xdj4c")
+Name = "Land Grab"
+Description = "Grants one patch of land.
+Gives +1 land to all Land Grab cards played at the same time."
+Icon = ExtResource("1_yaql6")
